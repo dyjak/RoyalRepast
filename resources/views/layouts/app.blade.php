@@ -10,6 +10,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,7 +24,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-
+            @include('layouts.carousel')
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -38,7 +40,7 @@
             </main>
         </div>
 
-
+{{--    RESTAURANTS EXPAND AND COLLAPSE MEALS--}}
     <script>
         function toggleCollapse(panelId) {
             var panel = document.getElementById(panelId);
@@ -49,5 +51,29 @@
             }
         }
     </script>
+
+{{--RESTAURANT INDEX MEALS PARTICULAR CATEGORY--}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var mealCategories = document.querySelectorAll('.meal-category');
+                mealCategories.forEach(function(category, index) {
+                    if (index !== 0) {
+                        category.style.display = 'none';
+                    }
+                });
+
+                var categoryButtons = document.querySelectorAll('.category-btn');
+                categoryButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var categoryId = button.dataset.category;
+                        mealCategories.forEach(function(category) {
+                            category.style.display = 'none';
+                        });
+                        document.getElementById('category' + categoryId).style.display = 'block';
+                    });
+                });
+            });
+        </script>
+
     </body>
 </html>
