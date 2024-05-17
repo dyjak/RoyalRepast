@@ -22,7 +22,7 @@ class MealSeeder extends Seeder
             $burgerName = "$word1 $word2 Burger";
             Meal::create([
                 'restaurant_id' => 1,
-                'category_id' => 1,
+                'category_id' => rand(1, 6),
                 'name' => $burgerName,
                 'price' => rand(5, 30),
                 'image_path' => strtolower('burger') . '_' . rand(1, 10) . '.png',
@@ -41,7 +41,7 @@ class MealSeeder extends Seeder
             $fineFoodName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 2,
-                'category_id' => 2,
+                'category_id' => rand(1, 6),
                 'name' => $fineFoodName,
                 'price' => rand(20, 100),
                 'image_path' => strtolower('fine_food') . '_' . rand(0, 5) . '.png',
@@ -58,7 +58,7 @@ class MealSeeder extends Seeder
             $casualDiningName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 3,
-                'category_id' => 3,
+                'category_id' => rand(1, 6),
                 'name' => $casualDiningName,
                 'price' => rand(10, 50),
                 'image_path' => strtolower('casual_dining') . '_' . rand(0, 5) . '.png',
@@ -76,7 +76,7 @@ class MealSeeder extends Seeder
             $mealName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 4,
-                'category_id' => 4,
+                'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(8, 20),
                 'image_path' => strtolower('bar') . '_' . rand(0, 5) . '.png',
@@ -93,7 +93,7 @@ class MealSeeder extends Seeder
             $mealName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 5,
-                'category_id' => 5,
+                'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(10, 25),
                 'image_path' => strtolower('pub') . '_' . rand(0, 5) . '.png',
@@ -110,7 +110,7 @@ class MealSeeder extends Seeder
             $mealName = "Food Truck - $word1 $word2 Special";
             Meal::create([
                 'restaurant_id' => 6,
-                'category_id' => 6,
+                'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(5, 15),
                 'image_path' => strtolower('food_truck') . '_' . rand(0, 5) . '.png',
@@ -127,7 +127,7 @@ class MealSeeder extends Seeder
             $burgerName = "Burger $word1 - $word2";
             Meal::create([
                 'restaurant_id' => 7,
-                'category_id' => 1,
+                'category_id' => rand(1, 6),
                 'name' => $burgerName,
                 'price' => rand(5, 30),
                 'image_path' => strtolower('burger') . '_' . rand(0, 5) . '.png',
@@ -146,7 +146,7 @@ class MealSeeder extends Seeder
             $fineFoodName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 8,
-                'category_id' => 2,
+                'category_id' => rand(1, 6),
                 'name' => $fineFoodName,
                 'price' => rand(20, 100),
                 'image_path' => strtolower('fine_food') . '_' . rand(0, 5) . '.png',
@@ -163,7 +163,7 @@ class MealSeeder extends Seeder
             $casualDiningName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 9,
-                'category_id' => 3,
+                'category_id' => rand(1, 6),
                 'name' => $casualDiningName,
                 'price' => rand(10, 50),
                 'image_path' => strtolower('casual_dining') . '_' . rand(0, 5) . '.png',
@@ -181,7 +181,7 @@ class MealSeeder extends Seeder
             $mealName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 10,
-                'category_id' => 4,
+                'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(8, 20),
                 'image_path' => strtolower('bar') . '_' . rand(0, 5) . '.png',
@@ -198,7 +198,7 @@ class MealSeeder extends Seeder
             $mealName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 10,
-                'category_id' => 5,
+                'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(10, 25),
                 'image_path' => strtolower('pub') . '_' . rand(0, 5) . '.png',
@@ -215,7 +215,7 @@ class MealSeeder extends Seeder
             $mealName = "$word1 $word2 Special";
             Meal::create([
                 'restaurant_id' => 11,
-                'category_id' => 6,
+                'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(5, 15),
                 'image_path' => strtolower('food_truck') . '_' . rand(0, 5) . '.png',
@@ -232,7 +232,7 @@ class MealSeeder extends Seeder
             $burgerName = "$word1 $word2 Burger";
             Meal::create([
                 'restaurant_id' => 12,
-                'category_id' => 1,
+                'category_id' => rand(1, 6),
                 'name' => $burgerName,
                 'price' => rand(5, 30),
                 'image_path' => strtolower('burger') . '_' . rand(1, 10) . '.png',
@@ -251,7 +251,7 @@ class MealSeeder extends Seeder
             $fineFoodName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 13,
-                'category_id' => 2,
+                'category_id' => rand(1, 6),
                 'name' => $fineFoodName,
                 'price' => rand(20, 100),
                 'image_path' => strtolower('fine_food') . '_' . rand(0, 5) . '.png',
@@ -268,7 +268,7 @@ class MealSeeder extends Seeder
             $casualDiningName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 14,
-                'category_id' => 3,
+                'category_id' => rand(1, 6),
                 'name' => $casualDiningName,
                 'price' => rand(10, 50),
                 'image_path' => strtolower('casual_dining') . '_' . rand(0, 5) . '.png',
@@ -286,7 +286,7 @@ class MealSeeder extends Seeder
             $mealName = "$word1 $word2";
             Meal::create([
                 'restaurant_id' => 15,
-                'category_id' => 4,
+                'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(8, 20),
                 'image_path' => strtolower('bar') . '_' . rand(0, 5) . '.png',

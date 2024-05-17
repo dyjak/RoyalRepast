@@ -22,9 +22,15 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::findOrFail($restaurant_id);
 
-        $categories = Meal_category::all();
+
+
         $meals = Meal::where('restaurant_id', $restaurant_id)->get();
 
-        return view('main-panel/restaurant-show', compact('restaurant', 'categories', 'meals'));
+        $categories = Meal_category::all();
+        $nonEmptyCategories = $categories->filter(function($category) use ($meals) {
+            return $meals->where('category_id', $category->id)->isNotEmpty();
+        });
+
+        return view('main-panel/restaurant-show', compact('restaurant', 'nonEmptyCategories', 'meals'));
     }
 }

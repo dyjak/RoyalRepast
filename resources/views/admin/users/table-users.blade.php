@@ -21,13 +21,24 @@
             <h3>User Table</h3>
         </div>
 
-        <form action="{{ route('admin.index') }}" method="GET">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." name="search"
-                       value="{{request('search')}}">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
-        </form>
+            <form action="{{ route('admin.users') }}" method="GET">
+                <div class="input-group mb-3">
+                    <select class="form-select" name="column">
+                        <option value="name" {{ request('column') == 'name' ? 'selected' : '' }}>Name</option>
+                        <option value="surname" {{ request('column') == 'surname' ? 'selected' : '' }}>Surame</option>
+                        <option value="email" {{ request('column') == 'email' ? 'selected' : '' }}>Email</option>
+                        <option value="permission" {{ request('column') == 'permission' ? 'selected' : '' }}>Permission</option>
+                        <option value="city" {{ request('column') == 'city' ? 'selected' : '' }}>City</option>
+                        <option value="postal_code" {{ request('column') == 'postal_code' ? 'selected' : '' }}>Postal code</option>
+                        <option value="street" {{ request('column') == 'street' ? 'selected' : '' }}>Street</option>
+                        <option value="address" {{ request('column') == 'address' ? 'selected' : '' }}>Address</option>
+                        <option value="phone" {{ request('column') == 'phone' ? 'selected' : '' }}>Phone</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="Search..." name="search"
+                           value="{{ request('search') }}">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </form>
 
         <div class="table-responsive">
             <table class="table table-bordered">

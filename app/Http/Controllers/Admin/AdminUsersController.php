@@ -10,13 +10,12 @@ class AdminUsersController extends Controller
 {
     public function index(Request $request)
     {
-
         $search = $request->input('search');
+        $column = $request->input('column', 'name');
+
         $usersQuery = User::query();
         if ($search) {
-            $usersQuery->where('name', 'like', "%$search%")
-                ->orWhere('surname', 'like', "%$search%")
-                ->orWhere('email', 'like', "%$search%");
+            $usersQuery->where($column, 'like', "%$search%");
         }
         $users = $usersQuery->get();
 

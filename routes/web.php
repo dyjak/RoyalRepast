@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminMealsController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\Ordering\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -41,6 +43,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/meal-delete-{id}', [AdminMealsController::class, 'destroy'])->name('admin.meal.delete');
     Route::post('/meal-store', [AdminMealsController::class, 'store'])->name('admin.meal.store');
 
+
+
+    #CART ROUTES
+    Route::post('/cart/add/{meal}', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::post('/checkout', [CartController::class, 'placeOrder'])->name('cart.placeOrder');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('order.details');
 
 
 

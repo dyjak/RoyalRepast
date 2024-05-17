@@ -1,0 +1,35 @@
+<div class="mt-5">
+    <h2>My Orders</h2>
+    @if($orders->isEmpty())
+        <p>You have no orders.</p>
+    @else
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Payment Method</th>
+                <th>Total Price</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($orders as $order)
+                <tr>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->created_at->format('d M Y') }}</td>
+                    <td>{{ $order->payment_method }}</td>
+                    <td>
+                        @if($order->orderElements)
+                            ${{ $order->orderElements->sum(fn($item) => $item->meal->price * $item->quantity) }}
+                        @else
+                            $0
+                        @endif
+                    </td>
+                    <td><a href="{{ route('order.details', $order->id) }}" class="btn btn-primary">View Details</a></td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @endif
+</div>
