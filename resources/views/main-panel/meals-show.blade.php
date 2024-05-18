@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container mt-5">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-6">
@@ -28,7 +34,7 @@
                         <h6 class="card-text">{{ $meal->description2 }}</h6>
                         <h6 class="card-text">Category: {{ $meal->category->name }}</h6>
 
-                        <form action="{{ route('cart.add', $meal->id) }}" method="POST" class="mt-3">
+                        <form action="{{ route('cart.add', $meal->id) }}" method="POST" class="mt-3 flex justify-around">
                             @csrf
                             <div class="form-group">
                                 <label for="quantity">Quantity:</label>

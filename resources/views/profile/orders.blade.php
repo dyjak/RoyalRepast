@@ -20,8 +20,8 @@
                     <td>{{ $order->created_at->format('d M Y') }}</td>
                     <td>{{ $order->payment_method }}</td>
                     <td>
-                        @if($order->orderElements)
-                            ${{ $order->orderElements->sum(fn($item) => $item->meal->price * $item->quantity) }}
+                        @if($order->elements)
+                            ${{ $order->elements->sum(fn($item) => $item->meal->price * $item->quantity) }}
                         @else
                             $0
                         @endif

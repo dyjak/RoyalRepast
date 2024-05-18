@@ -6,6 +6,13 @@
 
 @section('content')
     <div class="container mt-5">
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <h1 class="text-center mb-4">Restaurants</h1>
         <div class="row">
             @foreach($restaurants as $restaurant)
@@ -140,7 +147,6 @@
             }
         }
 
-        // Wywołanie funkcji autoScroll dla wszystkich kontenerów po załadowaniu strony
         document.addEventListener('DOMContentLoaded', () => {
             const scrollContainers = document.querySelectorAll('.horizontal-scroll-container');
             scrollContainers.forEach(container => {
@@ -148,7 +154,6 @@
             });
         });
     </script>
-    Po dodaniu tego skryptu, kontenery .horizontal-scroll-container będą automatycznie przewijane poziomo. Możesz dostosować prędkość przewijania zmieniając wartość zmiennej scrollSpeed w skrypcie.
 
 
 

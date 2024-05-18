@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('postal_code');
             $table->string('street');
             $table->string('address');
+            $table->float('delivery_price')->default(4.99);
             $table->timestamps();
         });
     }

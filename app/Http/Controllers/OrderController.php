@@ -11,7 +11,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('user_id', Auth::id())->with('order_elements.meal')->get();
+        $orders = Auth::user()->orders()->with('elements.meal')->get();
         return view('profile.orders', compact('orders'));
     }
 

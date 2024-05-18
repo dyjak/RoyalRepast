@@ -52,6 +52,12 @@
 </div>
 
 
+
+<footer>
+    Michał Dyjak 2024
+</footer>
+
+
 {{--RESTAURANT INDEX MEALS PARTICULAR CATEGORY--}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {

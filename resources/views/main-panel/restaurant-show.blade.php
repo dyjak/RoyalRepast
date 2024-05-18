@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="container">
+
         <div class="row flex justify-center">
             <h1 class="text-center">Meals</h1>
             <div class="col-md-3">
