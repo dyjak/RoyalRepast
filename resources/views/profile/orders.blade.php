@@ -19,13 +19,7 @@
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->created_at->format('d M Y') }}</td>
                     <td>{{ $order->payment_method }}</td>
-                    <td>
-                        @if($order->elements)
-                            ${{ $order->elements->sum(fn($item) => $item->meal->price * $item->quantity) }}
-                        @else
-                            $0
-                        @endif
-                    </td>
+                    <td>${{ number_format($order->total_cost, 2) }}</td>
                     <td><a href="{{ route('order.details', $order->id) }}" class="btn btn-primary">View Details</a></td>
                 </tr>
             @endforeach

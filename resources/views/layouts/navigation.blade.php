@@ -5,24 +5,44 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('restaurants.index') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+{{--                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">--}}
+{{--                        {{ __('Dashboard') }}--}}
+{{--                    </x-nav-link>--}}
+                    @if (Auth::user()->isAdmin())
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index') && Auth::user()->isAdmin()">
                         {{ __('Administrator') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants.index')">
-                        {{ __('Restaurants') }}
-                    </x-nav-link>
+                    @endif
+{{--                    <x-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants.index')">--}}
+{{--                        {{ __('Restaurants') }}--}}
+{{--                    </x-nav-link>--}}
                 </div>
             </div>
+
+{{--            //address--}}
+{{--            <div class="flex items-center user-address">--}}
+{{--                <a href="{{ route('cart.view') }}" class="relative" class="border border-indigo-400">--}}
+{{--                    @php Auth::user()->isAdmin(); @endphp--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <style>--}}
+{{--                .user-address{--}}
+
+{{--                    padding: 10px;--}}
+{{--                    border: 2px solid #ccc;--}}
+{{--                    border-radius: 20px;--}}
+{{--                    text-decoration: none;--}}
+{{--                    color: #333;--}}
+{{--                    transition: background-color 0.3s;--}}
+{{--                }--}}
+{{--            </style>--}}
 
             <!-- Cart Icon -->
             <div class="flex items-center">
@@ -43,7 +63,7 @@
 
                 .cart-count {
                     position: absolute;
-                    top: 0.5rem;
+                    top: -0.2rem;
                     right: -0.25rem;
                     width: 1.5rem;
                     height: 1.5rem;
@@ -78,7 +98,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('profile.show')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
                         <!-- Authentication -->
@@ -113,24 +133,26 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+{{--            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">--}}
+{{--                {{ __('Dashboard') }}--}}
+{{--            </x-responsive-nav-link>--}}
+            @if (Auth::user()->isAdmin())
             <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                 {{ __('Administrator') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants.index')">
-                {{ __('Restaurants') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('cart.view')" :active="request()->routeIs('cart.view')">
-                {{ __('Cart') }}
-            </x-responsive-nav-link>
+            @endif
+{{--            <x-responsive-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants.index')">--}}
+{{--                {{ __('Restaurants') }}--}}
+{{--            </x-responsive-nav-link>--}}
+{{--            <x-responsive-nav-link :href="route('cart.view')" :active="request()->routeIs('cart.view')">--}}
+{{--                {{ __('Cart') }}--}}
+{{--            </x-responsive-nav-link>--}}
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }} {{ Auth::user()->surname }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 

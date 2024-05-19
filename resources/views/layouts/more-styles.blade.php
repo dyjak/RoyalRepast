@@ -1,16 +1,16 @@
 <style>
 
     :root {
-        --primary-color: rgba(241, 234, 255, 0.7);
-        --2-color: rgba(229, 212, 255, 0.7);
-        --3-color: rgba(220, 191, 255, 0.7);
-        --4-color: rgba(208, 162, 247, 0.7);
+        --primary-color: rgba(255, 255, 204, 0.7); /* Jasny żółty */
+        --2-color: rgba(255, 255, 153, 0.7); /* Średni żółty */
+        --3-color: rgba(255, 255, 102, 0.7); /* Ciemny żółty */
+        --4-color: rgba(255, 255, 51, 0.7); /* Bardzo ciemny żółty */
     }
 
     main {
         background-color: var(--primary-color);
         color: #000000;
-        font-family: 'Roboto', sans-serif;
+        font-family: Georgia, serif;
         padding: 10px 0 20px 0;
     }
 
@@ -25,13 +25,16 @@
         background-color: transparent;
         color: #000000;
         padding: 10px 20px;
-        transition: background-color 0.3s ease, color 0.3s ease;
+        transition: background-color 0.6s ease, color 0.3s ease;
+        border-color: var(--2-color);
     }
 
     .btn:hover {
-        background-color: var(--4-color);
+        background-color: var(--2-color);
         color: #fff;
+        border-color: var(--2-color);
     }
+
 
     nav {
         background-color: var(--primary-color);
@@ -65,6 +68,11 @@
         box-shadow: 0 6px 9px rgba(0, 0, 0, 0.2);
     }
 
+    .sorting-filtering-section{
+        background-color: var(--4-color);
+        padding: 20px;
+        border-radius: 30px;
+    }
 
 
     footer{

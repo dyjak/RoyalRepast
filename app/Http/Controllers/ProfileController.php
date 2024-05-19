@@ -15,14 +15,23 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function show()
     {
-        $user = $request->user();
-        $orders = Order::where('user_id', $user->id)->with('elements.meal')->get();
+        $user = Auth::user();
+        $orders = $user->orders;
+
+        return view('profile.show', [
+            'user' => $user,
+            'orders' => $orders,
+        ]);
+    }
+
+    public function edit()
+    {
+        $user = Auth::user();
 
         return view('profile.edit', [
             'user' => $user,
-            'orders' => $orders,
         ]);
     }
 
@@ -39,7 +48,8 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+//        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'Profile updated successfully.');
     }
 
     /**
@@ -61,5 +71,18 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function updateAddress(Request $request)
+    {
+        $user = Auth::user();
+        $user->update([
+            'street' => $request->input('street'),
+            'city' => $request->input('city'),
+            'postal_code' => $request->input('postal_code'),
+            'address' => $request->input('address'),
+        ]);
+
+        return redirect()->back()->with('success', 'Address updated successfully!');
     }
 }

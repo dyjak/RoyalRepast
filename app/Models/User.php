@@ -52,6 +52,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function isAdmin()
+    {
+        return $this->permission == 'administrator';
+    }
 
 
     public function orders()

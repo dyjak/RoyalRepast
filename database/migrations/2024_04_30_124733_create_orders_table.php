@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('courier_id')->unsigned();
                 $table->foreign('courier_id')->references('id')->on('couriers');
             $table->string('payment_method');
+            $table->float('total_cost')->default(0);
             $table->timestamps();
         });
     }

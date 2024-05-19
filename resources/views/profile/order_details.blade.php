@@ -6,30 +6,62 @@
         <p>Order ID: {{ $order->id }}</p>
         <p>Date: {{ $order->created_at->format('d M Y') }}</p>
         <p>Payment Method: {{ $order->payment_method }}</p>
-        <p>Total Price: ${{ $order->elements->sum(fn($item) => $item->meal->price * $item->quantity) }}</p>
+        <p>Courier: {{ $order->courier->name}}, by {{ strtolower($order->courier->vehicle)}}</p>
+        <h5 id="countdown" data-created-at="{{ $order->created_at->timestamp }}">40:00</h5>
 
-        <h3>Order Items:</h3>
-        @if($order->elements->isNotEmpty())
-            <table class="table">
-                <thead>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Meal</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($order->elements as $element)
                 <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <td>{{ $element->meal->name }}</td>
+                    <td>{{ $element->quantity }}</td>
+                    <td>${{ number_format($element->meal->price * $element->quantity, 2) }}</td>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($order->elements as $element)
-                    <tr>
-                        <td>{{ $element->meal->name }}</td>
-                        <td>{{ $element->quantity }}</td>
-                        <td>${{ $element->meal->price }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        @else
-            <p>No items in this order.</p>
-        @endif
+            @endforeach
+            </tbody>
+        </table>
+
+        <p><strong>Total Cost: ${{ number_format($order->total_cost, 2) }}</strong></p>
     </div>
+
+{{--    /COUNTDOWN--}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function startCountdown(duration, display) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        display.textContent = "Time's up!";
+                    }
+                }, 1000);
+            }
+
+            var createdAt = parseInt(document.getElementById('countdown').getAttribute('data-created-at'));
+            var now = Math.floor(Date.now() / 1000);
+            var elapsed = now - createdAt;
+            var remaining = 40 * 60 - elapsed; // 40 minut
+
+            if (remaining > 0) {
+                startCountdown(remaining, document.getElementById('countdown'));
+            } else {
+                document.getElementById('countdown').textContent = "Order delivered!";
+            }
+        });
+    </script>
+
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\Ordering\CartController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,29 +20,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
+    Route::patch('/profile/updateAddress', [ProfileController::class, 'updateAddress'])->name('profile.updateAddress');
 
-
-    //ADMINISTRATOR ROUTES
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-        //users
-    Route::get('/admin-users', [AdminUsersController::class, 'index'])->name('admin.users');
-    Route::get('/user-edit-{id}', [AdminUsersController::class, 'userUpdate'])->name('admin.user.edit');
-    Route::get('/user-delete-{id}', [AdminUsersController::class, 'userDestroy'])->name('admin.user.delete');
-    Route::get('/user-create', [AdminUsersController::class, 'userCreate'])->name('admin.user.create');
-    Route::put('/user-update-{id}', [AdminUsersController::class, 'update'])->name('admin.user.update');
-    Route::delete('/user-delete-{id}', [AdminUsersController::class, 'destroy'])->name('admin.user.delete');
-    Route::post('/user-store', [AdminUsersController::class, 'store'])->name('admin.user.store');
-        //meals
-    Route::get('/admin-meals', [AdminMealsController::class, 'index'])->name('admin.meals');
-    Route::get('/meal-edit-{id}', [AdminMealsController::class, 'mealUpdate'])->name('admin.meal.edit');
-    Route::get('/meal-delete-{id}', [AdminMealsController::class, 'mealDestroy'])->name('admin.meal.delete');
-    Route::get('/meal-create', [AdminMealsController::class, 'mealCreate'])->name('admin.meal.create');
-    Route::put('/meal-update-{id}', [AdminMealsController::class, 'update'])->name('admin.meal.update');
-    Route::delete('/meal-delete-{id}', [AdminMealsController::class, 'destroy'])->name('admin.meal.delete');
-    Route::post('/meal-store', [AdminMealsController::class, 'store'])->name('admin.meal.store');
 
 
 
@@ -67,6 +51,33 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/restaurant/{restaurant_id}', [RestaurantController::class, 'show'])->name('restaurant.show');
 
+});
+
+
+
+
+
+
+
+//ADMINISTRATOR ROUTES
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    //users
+    Route::get('/admin-users', [AdminUsersController::class, 'index'])->name('admin.users');
+    Route::get('/user-edit-{id}', [AdminUsersController::class, 'userUpdate'])->name('admin.user.edit');
+    Route::get('/user-delete-{id}', [AdminUsersController::class, 'userDestroy'])->name('admin.user.delete');
+    Route::get('/user-create', [AdminUsersController::class, 'userCreate'])->name('admin.user.create');
+    Route::put('/user-update-{id}', [AdminUsersController::class, 'update'])->name('admin.user.update');
+    Route::delete('/user-delete-{id}', [AdminUsersController::class, 'destroy'])->name('admin.user.delete');
+    Route::post('/user-store', [AdminUsersController::class, 'store'])->name('admin.user.store');
+    //meals
+    Route::get('/admin-meals', [AdminMealsController::class, 'index'])->name('admin.meals');
+    Route::get('/meal-edit-{id}', [AdminMealsController::class, 'mealUpdate'])->name('admin.meal.edit');
+    Route::get('/meal-delete-{id}', [AdminMealsController::class, 'mealDestroy'])->name('admin.meal.delete');
+    Route::get('/meal-create', [AdminMealsController::class, 'mealCreate'])->name('admin.meal.create');
+    Route::put('/meal-update-{id}', [AdminMealsController::class, 'update'])->name('admin.meal.update');
+    Route::delete('/meal-delete-{id}', [AdminMealsController::class, 'destroy'])->name('admin.meal.delete');
+    Route::post('/meal-store', [AdminMealsController::class, 'store'])->name('admin.meal.store');
 });
 
 require __DIR__.'/auth.php';
