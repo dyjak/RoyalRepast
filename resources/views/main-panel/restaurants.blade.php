@@ -27,7 +27,7 @@
                             </a>
 
                             <div class="card-body d-flex">
-                                <div class="blur-box"> </div>
+                                <div class="blur-box"></div>
                                 @php
                                     $meals = Meal::where('restaurant_id', $restaurant->id)->inRandomOrder()->get();
                                 @endphp
@@ -46,36 +46,46 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="blur-box"> </div>
+                                <div class="blur-box"></div>
                             </div>
-{{--                            <div class="collapse" id="mealPanel{{ $restaurant->id }}">--}}
-{{--                                <div class="row">--}}
-{{--                                    @if($meals->isNotEmpty())--}}
-{{--                                        @foreach($meals as $meal)--}}
-{{--                                            <div class="col-md-4 mb-3">--}}
-{{--                                                <div class="card h-100 card-second">--}}
-{{--                                                    <div class="clickable-card"--}}
-{{--                                                         onclick="window.location.href='{{ route('meal.details', ['meal' => $meal->id]) }}'">--}}
-{{--                                                        <img src="{{ asset('storage/meal-imgs/' . $meal->image_path) }}"--}}
-{{--                                                             class="card-img-top" alt="{{ $meal->name }}">--}}
-{{--                                                        <div class="card-body">--}}
-{{--                                                            <h5 class="card-title">{{ $meal->name }}</h5>--}}
-{{--                                                            <p class="card-text">{{ $meal->description }}</p>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        @endforeach--}}
-{{--                                    @else--}}
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <p>No meals available for this restaurant.</p>--}}
-{{--                                        </div>--}}
-{{--                                    @endif--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="collapse" id="mealPanel{{ $restaurant->id }}">--}}
+                            {{--                                <div class="row">--}}
+                            {{--                                    @if($meals->isNotEmpty())--}}
+                            {{--                                        @foreach($meals as $meal)--}}
+                            {{--                                            <div class="col-md-4 mb-3">--}}
+                            {{--                                                <div class="card h-100 card-second">--}}
+                            {{--                                                    <div class="clickable-card"--}}
+                            {{--                                                         onclick="window.location.href='{{ route('meal.details', ['meal' => $meal->id]) }}'">--}}
+                            {{--                                                        <img src="{{ asset('storage/meal-imgs/' . $meal->image_path) }}"--}}
+                            {{--                                                             class="card-img-top" alt="{{ $meal->name }}">--}}
+                            {{--                                                        <div class="card-body">--}}
+                            {{--                                                            <h5 class="card-title">{{ $meal->name }}</h5>--}}
+                            {{--                                                            <p class="card-text">{{ $meal->description }}</p>--}}
+                            {{--                                                        </div>--}}
+                            {{--                                                    </div>--}}
+                            {{--                                                </div>--}}
+                            {{--                                            </div>--}}
+                            {{--                                        @endforeach--}}
+                            {{--                                    @else--}}
+                            {{--                                        <div class="col-md-12">--}}
+                            {{--                                            <p>No meals available for this restaurant.</p>--}}
+                            {{--                                        </div>--}}
+                            {{--                                    @endif--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
+                            <h5 class="text-center">{{$restaurant->delivery_price}}$ <i
+                                    class="fas fa-shipping-fast"> </i></h5>
                         </div>
                     </div>
                     @endforeach
+                </div>
+                <div class="flex justify-center">
+                    @if ($restaurants->previousPageUrl())
+                        <a href="{{ $restaurants->previousPageUrl() }}" class="btn btn-primary">Next</a>
+                    @endif
+                    @if ($restaurants->nextPageUrl())
+                        <a href="{{ $restaurants->nextPageUrl() }}" class="btn btn-primary">Previous</a>
+                    @endif
                 </div>
         </div>
 
@@ -98,10 +108,10 @@
                 object-fit: cover;
             }
 
-            .blur-box{
+            .blur-box {
                 background-color: var(--3-color);
-                width: 120px; height: 330px;
-                /*filter: drop-shadow(0 0 10px white);*/
+                width: 120px;
+                height: 330px;
                 filter: blur(5px);
                 z-index: 100;
                 display: none;
@@ -109,19 +119,19 @@
 
             @media (max-width: 1200px) {
                 .horizontal-scroll-container .card {
-                    width: calc(33.33% - 10px); /* Show 3 cards in a row */
+                    width: calc(33.33% - 10px);
                 }
             }
 
             @media (max-width: 992px) {
                 .horizontal-scroll-container .card {
-                    width: calc(50% - 10px); /* Show 2 cards in a row */
+                    width: calc(50% - 10px);
                 }
             }
 
             @media (max-width: 768px) {
                 .horizontal-scroll-container .card {
-                    width: calc(100% - 10px); /* Show 1 card in a row */
+                    width: calc(100% - 10px);
                 }
             }
         </style>

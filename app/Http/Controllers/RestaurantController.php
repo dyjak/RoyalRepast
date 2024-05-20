@@ -39,7 +39,7 @@ class RestaurantController extends Controller
             $restaurants->where('name', 'like', '%' . $search . '%');
         }
 
-        $restaurants = $restaurants->get();
+        $restaurants = $restaurants->paginate(5);
 
         return view('main-panel.restaurants', compact('categories', 'restaurants', 'sort_by', 'selected_category', 'free_delivery', 'search'));
     }

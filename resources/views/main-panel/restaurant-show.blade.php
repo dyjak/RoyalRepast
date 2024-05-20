@@ -34,7 +34,7 @@
                                         <h5 class="card-title">{{$meal->name}}</h5>
                                         <p class="card-text">{{$meal->description}}</p>
                                         <a href="{{ route('restaurant.show', ['restaurant_id' => $restaurant->id, 'meal_id' => $meal->id]) }}"
-                                           class="btn btn-primary">View Details</a>
+                                           class="btn btn-primary">Details</a>
                                     </div>
                                 </div>
                             </div>

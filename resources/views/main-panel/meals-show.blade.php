@@ -16,33 +16,49 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center justify-center">
                             <div>
                                 <img src="{{ asset('storage/logo/' . $meal->restaurant->logo_path . '.png') }}"
                                      alt="Restaurant Logo"
-                                     style="width: 50px; height: 50px; margin-right: 10px;">
+                                     style="width: 100px; height: 100px; margin-right: 10px;">
                             </div>
-                            <div>
-                                <h3 class="card-text">{{ $meal->restaurant->name }}</h3>
+                            <div class="items-center justify-center">
+                                <h1 class="card-text">{{ $meal->restaurant->name }}</h1>
                             </div>
                         </div>
                         <hr>
-                        <h2 class="card-title">{{ $meal->name }}</h2>
-                        <h2 class="card-text">Price: ${{ $meal->price }}</h2>
+                        <div class="d-flex justify-center items-center">
+                            <h1 class="card-title items-center">{{ $meal->name }}</h1>
+                        </div>
                         <hr>
-                        <h4 class="card-text">{{ $meal->description }}</h4>
+                        @php
+                            $desc = explode(',', $meal->description);
+                        @endphp
+                        <list>
+                            @foreach($desc as $d)
+                                <h5>
+                                    <ul><i class="fa-regular fa-circle-dot"></i> {{$d}}</ul>
+                                </h5>
+                            @endforeach
+                        </list>
                         <h6 class="card-text">{{ $meal->description2 }}</h6>
-                        <h6 class="card-text">Category: {{ $meal->category->name }}</h6>
+{{--                        <h6 class="card-text">Category: {{ $meal->category->name }}</h6>--}}
 
-                        <form action="{{ route('cart.add', $meal->id) }}" method="POST" class="mt-3 flex justify-around">
+                        <form action="{{ route('cart.add', $meal->id) }}" method="POST"
+                              class="mt-3 flex justify-center items-center">
                             @csrf
-                            <div class="form-group">
-                                <label for="quantity">Quantity:</label>
-                                <input type="number" name="quantity" id="quantity" class="form-control" value="1"
-                                       min="1">
+                            <div class="form-group m-0">
+                                <input type="number" name="quantity" id="quantity" class="form-control mr-sm-2"
+                                       value="1"
+                                       min="1" style="font-size: xx-large; width:100px; border:2px solid black; text-align: center; padding:0;">
                             </div>
-                            <button type="submit" class="btn btn-success mt-3">Add to Cart</button>
+                            <button type="submit" class="btn btn-success mt-3" style="font-size: large; margin:15px;">
+                                Add to Cart
+                            </button>
                         </form>
+                        <div class="d-flex justify-center text-right">
+                            <h1 class="card-text text-right">${{ $meal->price }}</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,15 +109,15 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        {{--                        @php--}}
-                        {{--                            $sampleMeals = [];--}}
-                        {{--                            while (count($sampleMeals) < 4) {--}}
-                        {{--                                $randomMeal = $meal->category->meals->random();--}}
-                        {{--                                if (!in_array($randomMeal, $sampleMeals)) {--}}
-                        {{--                                    $sampleMeals[] = $randomMeal;--}}
-                        {{--                                }--}}
-                        {{--                            }--}}
-                        {{--                        @endphp--}}
+                        {{--                                                @php--}}
+                        {{--                                                    $sampleMeals = [];--}}
+                        {{--                                                    while (count($sampleMeals) < 4) {--}}
+                        {{--                                                        $randomMeal = $meal->category->meals->random();--}}
+                        {{--                                                        if (!in_array($randomMeal, $sampleMeals)) {--}}
+                        {{--                                                            $sampleMeals[] = $randomMeal;--}}
+                        {{--                                                        }--}}
+                        {{--                                                    }--}}
+                        {{--                                                @endphp--}}
                         @foreach($sampleMeals as $meal_i)
                             <div class="col-md-3 mb-3">
                                 <div class="card h-100">

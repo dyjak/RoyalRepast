@@ -25,7 +25,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $burgerName,
                 'price' => rand(5, 30),
-                'image_path' => strtolower('burger') . '_' . rand(1, 10) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'beef 400g, bacon, salad, cheddar, yummy sauce',
                 'description2' => 'Really good burger. Recommended by Juan Al Lee - the master of salad chopping in China.',
             ]);
@@ -44,7 +44,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $fineFoodName,
                 'price' => rand(20, 100),
-                'image_path' => strtolower('fine_food') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Finest ingredients, expertly crafted into an exquisite dish.',
                 'description2' => 'Indulge in the luxurious flavors of our premium fine food. A culinary experience like no other.',
             ]);
@@ -61,7 +61,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $casualDiningName,
                 'price' => rand(10, 50),
-                'image_path' => strtolower('casual_dining') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Comforting and delicious, just like home-cooked meals.',
                 'description2' => 'Experience the warmth and flavor of our classic casual dining dishes. Perfect for a relaxed meal with friends and family.',
             ]);
@@ -79,7 +79,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(8, 20),
-                'image_path' => strtolower('bar') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Indulge in our exquisite bar creations, expertly crafted by our mixologists.',
                 'description2' => 'Experience the vibrant atmosphere of our bar while savoring our unique and flavorful cocktails.',
             ]);
@@ -96,7 +96,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(10, 25),
-                'image_path' => strtolower('pub') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Enjoy our pub classics and seasonal favorites in a cozy and relaxed atmosphere.',
                 'description2' => 'Treat yourself to a pint of our finest beer alongside our hearty and satisfying pub dishes.',
             ]);
@@ -113,7 +113,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(5, 15),
-                'image_path' => strtolower('food_truck') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Experience the taste of the streets with our diverse and flavorful food truck offerings.',
                 'description2' => 'Our food truck specials are crafted with fresh and quality ingredients to satisfy your cravings on the go.',
             ]);
@@ -130,7 +130,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $burgerName,
                 'price' => rand(5, 30),
-                'image_path' => strtolower('burger') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'beef 400g, bacon, salad, cheddar, yummy sauce',
                 'description2' => 'Really good burger. Recommended by Juan Al Lee - the master of salad chopping in China.',
             ]);
@@ -149,7 +149,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $fineFoodName,
                 'price' => rand(20, 100),
-                'image_path' => strtolower('fine_food') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Finest ingredients, expertly crafted into an exquisite dish.',
                 'description2' => 'Indulge in the luxurious flavors of our premium fine food. A culinary experience like no other.',
             ]);
@@ -166,7 +166,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $casualDiningName,
                 'price' => rand(10, 50),
-                'image_path' => strtolower('casual_dining') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Comforting and delicious, just like home-cooked meals.',
                 'description2' => 'Experience the warmth and flavor of our classic casual dining dishes. Perfect for a relaxed meal with friends and family.',
             ]);
@@ -184,7 +184,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(8, 20),
-                'image_path' => strtolower('bar') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Indulge in our exquisite bar creations, expertly crafted by our mixologists.',
                 'description2' => 'Experience the vibrant atmosphere of our bar while savoring our unique and flavorful cocktails.',
             ]);
@@ -201,7 +201,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(10, 25),
-                'image_path' => strtolower('pub') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Enjoy our pub classics and seasonal favorites in a cozy and relaxed atmosphere.',
                 'description2' => 'Treat yourself to a pint of our finest beer alongside our hearty and satisfying pub dishes.',
             ]);
@@ -218,7 +218,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(5, 15),
-                'image_path' => strtolower('food_truck') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Experience the taste of the streets with our diverse and flavorful food truck offerings.',
                 'description2' => 'Our food truck specials are crafted with fresh and quality ingredients to satisfy your cravings on the go.',
             ]);
@@ -235,7 +235,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $burgerName,
                 'price' => rand(5, 30),
-                'image_path' => strtolower('burger') . '_' . rand(1, 10) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'beef 400g, bacon, salad, cheddar, yummy sauce',
                 'description2' => 'Really good burger. Recommended by Juan Al Lee - the master of salad chopping in China.',
             ]);
@@ -254,7 +254,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $fineFoodName,
                 'price' => rand(20, 100),
-                'image_path' => strtolower('fine_food') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Finest ingredients, expertly crafted into an exquisite dish.',
                 'description2' => 'Indulge in the luxurious flavors of our premium fine food. A culinary experience like no other.',
             ]);
@@ -271,7 +271,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $casualDiningName,
                 'price' => rand(10, 50),
-                'image_path' => strtolower('casual_dining') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Comforting and delicious, just like home-cooked meals.',
                 'description2' => 'Experience the warmth and flavor of our classic casual dining dishes. Perfect for a relaxed meal with friends and family.',
             ]);
@@ -289,7 +289,7 @@ class MealSeeder extends Seeder
                 'category_id' => rand(1, 6),
                 'name' => $mealName,
                 'price' => rand(8, 20),
-                'image_path' => strtolower('bar') . '_' . rand(0, 5) . '.png',
+                'image_path' => strtolower('food_img') . '_' . rand(1, 75) . '.jpg',
                 'description' => 'Indulge in our exquisite bar creations, expertly crafted by our mixologists.',
                 'description2' => 'Experience the vibrant atmosphere of our bar while savoring our unique and flavorful cocktails.',
             ]);
