@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminMealsController;
 use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -11,13 +12,19 @@ use App\Http\Controllers\Ordering\CartController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
+Route::get('/meals/{meal}', [MealController::class, 'show'])->name('meal.details');
+Route::get('/restaurant/{restaurant_id}', [RestaurantController::class, 'show'])->name('restaurant.show');
+
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,20 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::post('/checkout', [CartController::class, 'placeOrder'])->name('cart.placeOrder');
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+//    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('order.details');
 
-
-
-
-
-
-    Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
-
-    Route::get('/meals/{meal}', [MealController::class, 'show'])->name('meal.details');
-
-
-    Route::get('/restaurant/{restaurant_id}', [RestaurantController::class, 'show'])->name('restaurant.show');
 
 });
 

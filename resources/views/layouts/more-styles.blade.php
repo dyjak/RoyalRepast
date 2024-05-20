@@ -1,11 +1,12 @@
 <style>
 
     :root {
-        --primary-color: rgba(255, 255, 204, 0.7); /* Jasny żółty */
-        --2-color: rgba(255, 255, 153, 0.7); /* Średni żółty */
-        --3-color: rgba(255, 255, 102, 0.7); /* Ciemny żółty */
-        --4-color: rgba(255, 255, 51, 0.7); /* Bardzo ciemny żółty */
+        --primary-color: #B4B4B8;
+        --2-color: #C7C8CC;
+        --3-color: #E3E1D9;
+        --4-color: rgba(239, 232, 209, 0.56);
     }
+
 
     main {
         background-color: var(--primary-color);
@@ -13,6 +14,7 @@
         font-family: Georgia, serif;
         padding: 10px 0 20px 0;
     }
+
 
     a {
         color: black;

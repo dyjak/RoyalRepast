@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     protected $freeDeliveryThreshold;
+
     public function __construct()
     {
         $this->freeDeliveryThreshold = config('app.free_delivery_threshold');
@@ -66,13 +67,13 @@ class CartController extends Controller
                 $restaurantTotal += $meal['price'] * $meal['quantity'];
             }
 
-            if ($restaurantTotal>=$this->freeDeliveryThreshold) $restaurantDeliveryCost = 0;
+            if ($restaurantTotal >= $this->freeDeliveryThreshold) $restaurantDeliveryCost = 0;
             $totalCost += $restaurantTotal + $restaurantDeliveryCost;
         }
 
         $cartCount = array_sum(array_map(fn($meals) => array_sum(array_column($meals, 'quantity')), $cart));
 
-        return view('main-panel.cart.view', compact('cart', 'cartCount', 'restaurantDetails', 'totalCost','restaurantDeliveryCost'));
+        return view('main-panel.cart.view', compact('cart', 'cartCount', 'restaurantDetails', 'totalCost', 'restaurantDeliveryCost'));
     }
 
 
@@ -138,8 +139,8 @@ class CartController extends Controller
             $restaurantTotal += $restaurantDeliveryCost;
             $totalCost += $restaurantTotal;
         }
-
-        return view('main-panel.cart.checkout', compact('cart', 'totalCost'));
+        $user = Auth::user();
+        return view('main-panel.cart.checkout', compact('cart', 'totalCost', 'user'));
     }
 
 
@@ -170,19 +171,23 @@ class CartController extends Controller
 
             $totalCost = $restaurantTotal + $restaurantDeliveryCost;
 
-            $order = Order::create([
-                'user_id' => Auth::id(),
-                'courier_id' => 1,
-                'payment_method' => $request->payment_method,
-                'total_cost' => $totalCost,
-            ]);
-
-            foreach ($meals as $mealId => $details) {
-                Order_element::create([
-                    'order_id' => $order->id,
-                    'meal_id' => $mealId,
-                    'quantity' => $details['quantity']
+            $fullOrderAddress = $request->city." ".$request->street." ".$request->postal_code." ".$request->address;
+            if ($totalCost > 0) {
+                $order = Order::create([
+                    'user_id' => Auth::id(),
+                    'courier_id' => 1,
+                    'payment_method' => $request->payment_method,
+                    'address' => $fullOrderAddress,
+                    'total_cost' => $totalCost,
                 ]);
+
+                foreach ($meals as $mealId => $details) {
+                    Order_element::create([
+                        'order_id' => $order->id,
+                        'meal_id' => $mealId,
+                        'quantity' => $details['quantity']
+                    ]);
+                }
             }
         }
 

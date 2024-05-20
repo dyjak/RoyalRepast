@@ -29,6 +29,7 @@
         </table>
 
         <p><strong>Total Cost: ${{ number_format($order->total_cost, 2) }}</strong></p>
+        <p><strong>Delivery address: {{ $order->address }}</strong></p>
     </div>
 
 {{--    /COUNTDOWN--}}

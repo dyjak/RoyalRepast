@@ -25,7 +25,8 @@ class OrderSeeder extends Seeder
                 $orderData = [
                     'user_id' => $user->id,
                     'courier_id' => $courier->id,
-                    'payment_method' => $methods[array_rand($methods)]
+                    'payment_method' => $methods[array_rand($methods)],
+                    'address' => $user->city." ".$user->street." ".$user->address
                 ];
 
                 Order::create($orderData);

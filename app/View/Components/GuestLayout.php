@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Meal;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -12,6 +13,8 @@ class GuestLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.guest');
+        $mealImage = Meal::inRandomOrder()->first()->image_path;
+        return view('layouts.guest', compact('mealImage'));
     }
+
 }
