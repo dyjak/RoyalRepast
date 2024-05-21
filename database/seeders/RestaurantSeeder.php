@@ -25,6 +25,7 @@ class RestaurantSeeder extends Seeder
             'postal_code' => '10001',
             'street' => 'Main Street',
             'address' => '123',
+            'delivery_price' => 0.0,
         ]);
 
         Restaurant::create([
@@ -64,6 +65,7 @@ class RestaurantSeeder extends Seeder
             'postal_code' => '60601',
             'street' => 'Michigan Avenue',
             'address' => '101',
+            'delivery_price' => 0.0,
         ]);
 
         Restaurant::create([
@@ -90,6 +92,7 @@ class RestaurantSeeder extends Seeder
             'postal_code' => '19101',
             'street' => 'Market Street',
             'address' => '303',
+            'delivery_price' => 0.0,
         ]);
 
         Restaurant::create([
@@ -116,6 +119,7 @@ class RestaurantSeeder extends Seeder
             'postal_code' => '10003',
             'street' => 'Broadway',
             'address' => '789',
+            'delivery_price' => 0.0,
         ]);
 
         Restaurant::create([
@@ -142,6 +146,7 @@ class RestaurantSeeder extends Seeder
             'postal_code' => '77002',
             'street' => 'Main Street',
             'address' => '202',
+            'delivery_price' => 0.0,
         ]);
 
         Restaurant::create([
@@ -181,6 +186,7 @@ class RestaurantSeeder extends Seeder
             'postal_code' => '90003',
             'street' => 'Sunset Boulevard',
             'address' => '456',
+            'delivery_price' => 9.0,
         ]);
 
         Restaurant::create([
@@ -207,6 +213,7 @@ class RestaurantSeeder extends Seeder
             'postal_code' => '60603',
             'street' => 'Michigan Avenue',
             'address' => '101',
+            'delivery_price' => 0.0,
         ]);
     }
 }

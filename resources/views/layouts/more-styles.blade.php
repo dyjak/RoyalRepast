@@ -1,14 +1,28 @@
 <style>
 
     :root {
-        --bs-primary: rgba(136, 120, 143, 0.84);
-        --bs-secondary: rgba(110, 43, 140, 0.84);
+        --bs-primary: rgba(255, 255, 255, 0.78);
+        --bs-secondary: rgba(255, 255, 255, 0.4);
 
 
         --primary-color: #B4B4B8;
-        --2-color: #C7C8CC;
-        --3-color: #E3E1D9;
-        --4-color: rgba(201, 195, 177, 0.56);
+        --2-color: rgba(198, 199, 204, 0.63);
+        --3-color: rgba(227, 225, 217, 0.66);
+        --4-color: rgb(201, 195, 177);
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    main {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        flex: 1;
     }
 
     main {
@@ -16,7 +30,7 @@
         font-family: Georgia, serif;
         padding: 10px 0 20px 0;
 
-        background: linear-gradient(275deg, var(--primary-color), #a0aec0, white, slategray, grey);
+        background: linear-gradient(275deg, var(--primary-color), #a5cdf8, #fcdfdf, slategray, grey);
         background-size: 600% 600%;
         animation: gradientBackground 9s linear infinite;
     }
@@ -141,6 +155,7 @@
 
     footer {
         background-color: var(--4-color);
+        flex-shrink: 0;
     }
 
 
@@ -163,75 +178,84 @@
 
 
 /*BOOTSTRAPY*/
-    .form-control:focus {
-        border-color: var(--bs-primary) !important;
-        box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.25) !important; /* Dostosuj kolor według potrzeb */
+    .form-check-radio, .form-check {
+        display: flex;
+        align-items: center;
     }
 
-    .custom-control-input:checked ~ .custom-control-label::before {
-        border-color: var(--bs-primary) !important;
-        background-color: var(--bs-primary) !important;
+    .form-check-input {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.5rem;
+        border: 2px solid var(--bs-primary);
+        border-radius: 50%;
+        background-color: transparent;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
-    .custom-control-input:focus ~ .custom-control-label::before {
-        box-shadow: 0 0 0 1px var(--bs-primary) !important;
+    .form-check-input:checked {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
     }
 
-    .custom-select:focus {
-        border-color: var(--bs-primary) !important;
-        box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.25) !important; /* Dostosuj kolor według potrzeb */
+    .form-check-input:active {
+        background-color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
+    }
+
+    .form-check-label {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .form-check-label i {
+        margin-right: 0.5rem;
+    }
+
+    .form-check-input[type="checkbox"] {
+        border-radius: 0.25rem;
+    }
+
+    .form-check-input[type="checkbox"]:checked {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .form-check-input[type="checkbox"]:active {
+        background-color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
+    }
+
+    .input-group .form-control {
+        border: 2px solid var(--bs-primary);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .input-group .form-control:focus {
+        border-color: var(--bs-primary);
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .input-group .form-control:active {
+        border-color: var(--bs-secondary);
+        box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
     }
 
     .btn-primary {
-        background-color: var(--bs-primary) !important;
-        border-color: var(--bs-primary) !important;
-    }
-
-    .btn-primary:hover,
-    .btn-primary:focus {
-        background-color: darken(var(--bs-primary), 10%) !important;
-        border-color: darken(var(--bs-primary), 10%) !important;
-    }
-
-    .text-primary {
-        color: var(--bs-primary) !important;
-    }
-
-    .bg-primary {
-        background-color: var(--bs-primary) !important;
-    }
-
-    .border-primary {
-        border-color: var(--bs-primary) !important;
-    }
-
-    /* Style for radio buttons */
-    input[type="radio"]:checked + label::before {
-        border-color: var(--bs-primary);
         background-color: var(--bs-primary);
-    }
-
-    input[type="radio"]:focus + label::before {
-        box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.25);
-    }
-
-    /* Style for checkboxes */
-    input[type="checkbox"]:checked + label::before {
         border-color: var(--bs-primary);
-        background-color: var(--bs-primary);
     }
 
-    input[type="checkbox"]:focus + label::before {
-        box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.25);
+    .btn-primary:hover, .btn-primary:focus {
+        background-color: darken(var(--bs-primary), 10%);
+        border-color: darken(var(--bs-primary), 10%);
     }
 
-    /* Specific styles for custom-control bootstrap classes */
-    .custom-control-input:checked ~ .custom-control-label::before {
-        border-color: var(--bs-primary) !important;
-        background-color: var(--bs-primary) !important;
+    .btn-primary:active {
+        background-color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
     }
 
-    .custom-control-input:focus ~ .custom-control-label::before {
-        box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.25) !important;
-    }
 </style>

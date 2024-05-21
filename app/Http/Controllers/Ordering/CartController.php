@@ -51,6 +51,7 @@ class CartController extends Controller
 
         $restaurantDetails = [];
         $totalCost = 0;
+        $restaurantDeliveryCost=0;
 
         foreach ($cart as $restaurantId => $meals) {
             $restaurant = \App\Models\Restaurant::find($restaurantId);
@@ -59,6 +60,7 @@ class CartController extends Controller
             $restaurantDetails[$restaurantId] = [
                 'name' => $restaurant->name,
                 'delivery_price' => $restaurantDeliveryCost,
+                'logo_path' => $restaurant->logo_path,
             ];
 
             $restaurantTotal = 0;

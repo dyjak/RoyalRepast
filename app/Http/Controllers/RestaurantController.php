@@ -32,7 +32,7 @@ class RestaurantController extends Controller
         }
 
         if ($free_delivery) {
-            $restaurants->where('free_delivery', true);
+            $restaurants->where('delivery_price', 0.0);
         }
 
         if ($search) {

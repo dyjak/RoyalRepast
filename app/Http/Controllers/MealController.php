@@ -8,8 +8,11 @@ use Illuminate\Http\Request;
 
 class MealController extends Controller
 {
+
     public function show(Meal $meal)
     {
-        return view('main-panel.meals-show', ['meal' => $meal]);
+        $mealsFromSameRestaurant = $meal->restaurant->meals()->where('id', '!=', $meal->id)->inRandomOrder()->take(4)->get();
+        $mealsFromSameCategory = $meal->category->meals()->where('id', '!=', $meal->id)->inRandomOrder()->take(4)->get();
+        return view('main-panel.meals-show', compact('meal', 'mealsFromSameRestaurant', 'mealsFromSameCategory'));
     }
 }
