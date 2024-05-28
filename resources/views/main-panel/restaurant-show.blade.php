@@ -1,61 +1,69 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="container justify-center items-center">
+    <div class="container justify-content-center align-items-center">
+        <!-- Restaurant Information -->
         <div class="card-header mb-6">
-            <div class="d-flex align-items-center justify-center">
+            <div class="d-flex align-items-center justify-content-center">
                 <div>
-                    <img src="{{ asset('storage/logo/' . $restaurant->logo_path . '.png') }}" alt="Restaurant Logo" style="width: 200px; height: 200px; margin-right: 10px;">
+                    <img src="{{ asset('storage/logo/' . $restaurant->logo_path . '.png') }}" alt="Restaurant Logo"
+                         style="width: 200px; height: 200px; margin-right: 10px;">
                 </div>
-                <div class="items-center justify-center">
+                <div class="items-center justify-content-center">
                     <h1 class="card-text display-4">{{ $restaurant->name }}</h1>
                 </div>
             </div>
-            <div class="contact-info p-4 d-flex justify-between" style="background-color: var(--bs-secondary); border-radius: 20px; font-size: large;">
+            <div class="contact-info p-4 d-flex justify-content-between"
+                 style="background-color: var(--bs-secondary); border-radius: 20px; font-size: large;">
                 <p><i class="fas fa-utensils"></i> {{$restaurant->category->name}}</p>
                 <p><i class="fas fa-envelope"></i> {{$restaurant->email}}</p>
-                <p><i class="fas fa-phone"></i> <a href="{{$restaurant->phone}}">{{$restaurant->phone}}</a></p>
+                <p><i class="fas fa-phone"></i> <a href="tel:{{$restaurant->phone}}">{{$restaurant->phone}}</a></p>
             </div>
         </div>
         <br>
-        <div class="row flex justify-center mt-6">
+        <!-- Categories and Meals -->
+        <div class="row justify-content-center mt-6">
             <div class="col-md-3">
-                <div class="btn-group-vertical mb-3">
-                    <button class="btn btn-outline-primary category-btn active" data-category="all">All</button>
-                    @foreach($nonEmptyCategories as $category)
-                        <button class="btn btn-outline-primary category-btn" data-category="{{$category->id}}">{{$category->name}}</button>
+                <form action="{{ route('restaurant.filterByCategory', $restaurant->id) }}" method="POST" class="btn-group-vertical mb-3">
+                    @csrf
+                    <button type="submit" name="category" value="all" class="btn btn-outline-primary category-btn{{ $selected_category === 'all' ? ' active' : '' }}">All</button>
+                    @foreach($categories as $category)
+                        <button type="submit" name="category" value="{{$category->name}}" class="btn btn-outline-primary category-btn{{ $selected_category === $category->name ? ' active' : '' }}">{{$category->name}}</button>
                     @endforeach
-                </div>
+                </form>
             </div>
             <div class="col-md-9">
                 <div id="mealCategories">
-                    <div class="meal-category row" id="categoryall">
+                    <div class="meal-category row d-flex justify-content-center" id="categoryall">
                         @foreach($meals as $meal)
-                            <div class="col-md-6 mb-3">
-                                <div class="card meal-card">
-                                    <img src="{{ asset('storage/meal-imgs/' . $meal->image_path) }}" class="img-fluid rounded-start meal-image" alt="Meal Image">
-                                    <div class="card-body flex flex-col justify-center">
+                            <div class="col-12 col-md-6 mb-3 meal-item">
+                                <a href="{{ route('meal.details', $meal->id) }}" class="card meal-card">
+                                    <img src="{{ asset('storage/meal-imgs/' . $meal->image_path) }}"
+                                         class="img-fluid rounded-start meal-image" alt="Meal Image">
+                                    <div class="card-body flex flex-col justify-content-center">
                                         <h5 class="card-title">{{$meal->name}}</h5>
                                         <p class="card-text">{{$meal->description}}</p>
-                                        <p class="card-text text-center">${{ number_format($meal->price, 2) }}</p>
+                                        <p class="card-text text-center"><b>${{ number_format($meal->price, 2) }}</b>
+                                        </p>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
                     @foreach($nonEmptyCategories as $category)
                         <div class="meal-category row" id="category{{$category->id}}" style="display: none;">
                             @foreach($meals->where('category_id', $category->id) as $meal)
-                                <div class="col-md-6 mb-3">
-                                    <div class="card meal-card">
-                                        <img src="{{ asset('storage/meal-imgs/' . $meal->image_path) }}" class="img-fluid rounded-start meal-image" alt="Meal Image">
-                                        <div class="card-body flex flex-col justify-center">
+                                <div class="col-12 col-md-6 mb-3 meal-item">
+                                    <a href="{{ route('meal.details', $meal->id) }}" class="card meal-card">
+                                        <img src="{{ asset('storage/meal-imgs/' . $meal->image_path) }}"
+                                             class="img-fluid rounded-start meal-image" alt="Meal Image">
+                                        <div class="card-body flex flex-col justify-content-center">
                                             <h5 class="card-title">{{$meal->name}}</h5>
                                             <p class="card-text">{{$meal->description}}</p>
-                                            <p class="card-text text-center"><b>${{ number_format($meal->price, 2) }}</b></p>
+                                            <p class="card-text text-center">
+                                                <b>${{ number_format($meal->price, 2) }}</b></p>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -65,40 +73,11 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const categoryButtons = document.querySelectorAll('.category-btn');
-
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const categoryId = this.getAttribute('data-category');
-                    const mealCategories = document.querySelectorAll('.meal-category');
-
-                    categoryButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    this.classList.add('active');
-
-                    mealCategories.forEach(category => {
-                        category.style.display = 'none';
-                    });
-
-                    if (categoryId === "all") {
-                        mealCategories.forEach(category => {
-                            category.style.display = 'block';
-                        });
-                    } else {
-                        const selectedCategory = document.querySelector(`#category${categoryId}`);
-                        selectedCategory.style.display = 'block';
-                    }
-                });
-            });
-        });
-    </script>
 
     <style>
+
         .card {
-            max-width: 800px;
+            max-width: 1000px;
         }
 
         .meal-image {
@@ -109,6 +88,17 @@
 
         .meal-card {
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+        }
+
+        .meal-card:hover {
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
         }
 
         .contact-info p {
@@ -125,7 +115,6 @@
         .category-btn {
             margin-bottom: 5px;
             font-size: large;
-            letter-spacing: 5px;
         }
 
         .category-btn.active {
@@ -149,7 +138,8 @@
             .category-btn {
                 flex: 1 1 calc(50% - 10px);
             }
-            .contact-info{
+
+            .contact-info {
                 flex-direction: column;
             }
         }
@@ -172,6 +162,13 @@
             }
         }
 
+        .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
     </style>
 
 @endsection

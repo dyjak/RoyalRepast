@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Meal_category extends Model
 {
     use HasFactory;
+    protected $fillable = ['name',];
 
 
     public function meals()

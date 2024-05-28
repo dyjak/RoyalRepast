@@ -26,6 +26,7 @@ class OrderSeeder extends Seeder
                     'user_id' => $user->id,
                     'courier_id' => $courier->id,
                     'payment_method' => $methods[array_rand($methods)],
+                    'total_cost' => rand(25.99, 99.99),
                     'address' => $user->city." ".$user->street." ".$user->address
                 ];
 

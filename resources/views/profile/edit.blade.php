@@ -1,5 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
+        <h1 class="d-flex justify-center">Profile Edit</h1>
+    </x-slot>
+    @section('content')
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -33,5 +36,5 @@
                 </div>
             </div>
         </div>
-    </x-slot>
+    @endsection
 </x-app-layout>

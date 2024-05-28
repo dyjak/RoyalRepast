@@ -53,33 +53,31 @@
 
 
 
-<footer>
-    Michał Dyjak 2024
-</footer>
+@include('layouts.footer')
 
 
 {{--RESTAURANT INDEX MEALS PARTICULAR CATEGORY--}}
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var mealCategories = document.querySelectorAll('.meal-category');
-        mealCategories.forEach(function (category, index) {
-            if (index !== 0) {
-                category.style.display = 'none';
-            }
-        });
+{{--<script>--}}
+{{--    document.addEventListener('DOMContentLoaded', function () {--}}
+{{--        var mealCategories = document.querySelectorAll('.meal-category');--}}
+{{--        mealCategories.forEach(function (category, index) {--}}
+{{--            if (index !== 0) {--}}
+{{--                category.style.display = 'none';--}}
+{{--            }--}}
+{{--        });--}}
 
-        var categoryButtons = document.querySelectorAll('.category-btn');
-        categoryButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var categoryId = button.dataset.category;
-                mealCategories.forEach(function (category) {
-                    category.style.display = 'none';
-                });
-                document.getElementById('category' + categoryId).style.display = 'block';
-            });
-        });
-    });
-</script>
+{{--        var categoryButtons = document.querySelectorAll('.category-btn');--}}
+{{--        categoryButtons.forEach(function (button) {--}}
+{{--            button.addEventListener('click', function () {--}}
+{{--                var categoryId = button.dataset.category;--}}
+{{--                mealCategories.forEach(function (category) {--}}
+{{--                    category.style.display = 'none';--}}
+{{--                });--}}
+{{--                document.getElementById('category' + categoryId).style.display = 'block';--}}
+{{--            });--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}{{-- ??????????????????????????--}}
 
 </body>
 </html>

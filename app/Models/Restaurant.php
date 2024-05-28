@@ -33,6 +33,7 @@ class Restaurant extends Model
         return $this->hasMany(Courier::class);
     }
 
+
     public function category()
     {
         return $this->belongsTo(Restaurant_category::class, 'restaurant_category_id');

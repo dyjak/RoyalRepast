@@ -15,25 +15,27 @@
 
         <div>
             <x-input-label for="street" :value="__('Street')" />
-            <x-text-input id="street" name="street" type="text" class="mt-1 block w-full" value="{{ $user->street }}" />
+            <x-text-input id="street" name="street" type="text" class="mt-1 block w-full" value="{{ old('street', $user->street) }}" />
             <x-input-error :messages="$errors->updateAddress->get('street')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="city" :value="__('City')" />
-            <x-text-input id="city" name="city" type="text" class="mt-1 block w-full" value="{{ $user->city }}" />
+            <x-text-input id="city" name="city" type="text" class="mt-1 block w-full" value="{{ old('city', $user->city) }}" />
             <x-input-error :messages="$errors->updateAddress->get('city')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="postal_code" :value="__('Postal Code')" />
-            <x-text-input id="postal_code" name="postal_code" type="text" class="mt-1 block w-full" value="{{ $user->postal_code }}" />
+            <x-text-input id="postal_code" name="postal_code" type="text" class="mt-1 block w-full"
+                          value="{{ $user->postal_code }}" pattern="\d{2}-\d{3}"
+                          title="Postal code must be in the format XX-XXX (e.g., 12-345)" />
             <x-input-error :messages="$errors->updateAddress->get('postal_code')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="address" :value="__('Address')" />
-            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" value="{{ $user->address }}" />
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" value="{{ old('address', $user->address) }}" />
             <x-input-error :messages="$errors->updateAddress->get('address')" class="mt-2" />
         </div>
 
@@ -41,13 +43,9 @@
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('success'))
-{{--                <p--}}
-{{--                    x-data="{ show: true }"--}}
-{{--                    x-show="show"--}}
-{{--                    x-transition--}}
-{{--                    x-init="setTimeout(() => show = false, 2000)"--}}
-{{--                    class="text-sm text-gray-600"--}}
-{{--                >{{ __('Address updated.') }}</p>--}}
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
             @endif
         </div>
     </form>

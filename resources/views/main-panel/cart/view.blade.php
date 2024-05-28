@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <h2 class="text-center">Your Cart</h2>
+    <div class="container d-flex flex-col justify-center content-center">
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
+        <h1 class="text-center">Your Cart</h1>
         @if($cart)
             @foreach($cart as $restaurantId => $meals)
                 @php

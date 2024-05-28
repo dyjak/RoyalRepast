@@ -58,6 +58,8 @@
                 }
             </style>
 
+{{--            @include('additions.theme-switch')--}}
+
             <!-- Authentication Links -->
             @guest
                 <div class="flex items-center space-x-4">

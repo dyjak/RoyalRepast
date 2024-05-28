@@ -1,5 +1,5 @@
-<div class="mt-5">
-    <h2>My Orders</h2>
+<div class="mt-5 d-flex flex-col justify-between items-center content-center">
+    <h1>My Orders</h1>
     @if($orders->isEmpty())
         <p>You have no orders.</p>
     @else

@@ -15,7 +15,7 @@ class RestaurantController extends Controller
     {
         $categories = Restaurant_category::all();
         $sort_by = $request->input('sort_by');
-        $selected_category = $request->input('category', 'all');
+        $selected_category = $request->input('category', 'all'); // Domyślnie wyświetl wszystkie restauracje
         $free_delivery = $request->input('free_delivery');
         $search = $request->input('search');
 
@@ -39,7 +39,7 @@ class RestaurantController extends Controller
             $restaurants->where('name', 'like', '%' . $search . '%');
         }
 
-        $restaurants = $restaurants->paginate(5);
+        $restaurants = $restaurants->inRandomOrder()->paginate(5);
 
         return view('main-panel.restaurants', compact('categories', 'restaurants', 'sort_by', 'selected_category', 'free_delivery', 'search'));
     }
@@ -48,17 +48,43 @@ class RestaurantController extends Controller
 
     public function show($restaurant_id)
     {
+        $selected_category = 'all';
         $restaurant = Restaurant::findOrFail($restaurant_id);
-
-
-
-        $meals = Meal::where('restaurant_id', $restaurant_id)->get();
-
+        $meals = Meal::where('restaurant_id', $restaurant_id)->inRandomOrder()->get();
         $categories = Meal_category::all();
         $nonEmptyCategories = $categories->filter(function($category) use ($meals) {
             return $meals->where('category_id', $category->id)->isNotEmpty();
         });
 
-        return view('main-panel/restaurant-show', compact('restaurant', 'nonEmptyCategories', 'meals'));
+        return view('main-panel/restaurant-show', compact('restaurant', 'categories', 'meals', 'selected_category', 'nonEmptyCategories'));
+    }
+
+
+    public function filterByCategory(Request $request, $restaurant_id)
+    {
+        $selected_category = $request->input('category', 'all');
+
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+
+        if ($selected_category !== 'all') {
+            $meals = Meal::where('restaurant_id', $restaurant_id)
+                ->whereHas('category', function($query) use ($selected_category) {
+                    $query->where('name', $selected_category);
+                })
+                ->get();
+        } else {
+            $meals = Meal::where('restaurant_id', $restaurant_id)->get();
+        }
+
+        $categories = Meal_category::whereHas('meals', function($query) use ($restaurant_id) {
+            $query->where('restaurant_id', $restaurant_id);
+        })
+            ->get();
+
+        $nonEmptyCategories = $categories->filter(function($category) use ($meals) {
+            return $meals->where('category_id', $category->id)->isNotEmpty();
+        });
+
+        return view('main-panel/restaurant-show', compact('restaurant', 'categories', 'meals', 'selected_category', 'nonEmptyCategories'));
     }
 }

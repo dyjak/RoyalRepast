@@ -1,12 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
-
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-        <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profile</a>
-
-        @include('profile.orders')
-
+        <div class="d-flex justify-between items-center">
+            <h1>
+                {{ __('Profile') }}
+            </h1>
+            <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profile</a>
+        </div>
     </x-slot>
+
+    @section('content')
+        <div class="container">
+            @include('profile.orders')
+        </div>
+    @endsection
 </x-app-layout>

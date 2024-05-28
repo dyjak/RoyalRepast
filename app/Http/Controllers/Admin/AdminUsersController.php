@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUsersController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminUsersController extends Controller
         if ($search) {
             $usersQuery->where($column, 'like', "%$search%");
         }
-        $users = $usersQuery->get();
+        $users = $usersQuery->where('id', '<>', Auth::id())->get();
 
         return view('admin.users.table-users', compact('users'));
     }
@@ -46,10 +47,11 @@ class AdminUsersController extends Controller
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:255',
+            'postal_code' => ['required', 'string', 'max:255', 'regex:/^\d{2}-\d{3}$/'],
             'street' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
+            'phone' => ['required', 'string', 'max:255', 'regex:/^\+\d{2} \d{9}$/'],
+            'password' => 'required|string|max:255',
         ]);
 
         $user = User::findOrFail($id);
@@ -75,10 +77,11 @@ class AdminUsersController extends Controller
             'email' => 'required|email|unique:users,email',
             'permission' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:255',
+            'postal_code' => ['required', 'string', 'max:255', 'regex:/^\d{2}-\d{3}$/'],
             'street' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
+            'phone' => ['required', 'string', 'max:255', 'regex:/^\+\d{2} \d{9}$/'],
+            'password' => 'required|string|max:255',
         ]);
 
         User::create([
@@ -90,7 +93,8 @@ class AdminUsersController extends Controller
             'postal_code' => $request->postal_code,
             'street' => $request->street,
             'address' => $request->address,
-            'phone' => $request->phone,
+            'phone' => ['required', 'string', 'max:255', 'regex:/^\+\d{2} \d{9}$/'],
+            'password' => $request->password,
         ]);
 
         return redirect()->route('admin.users')->with('success', 'User added successfully.');
