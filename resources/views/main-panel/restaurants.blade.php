@@ -51,6 +51,10 @@
                                     </div>
                                     <div class="blur-box"></div>
                                 </div>
+                                <div>
+                                    <h6 class="card-text text-center">{{ $restaurant->city }} {{ $restaurant->street }} {{ $restaurant->address }}</h6>
+                                </div>
+                                <hr>
                                 <h5 class="text-center">{{ $restaurant->delivery_price }}$ <i class="fas fa-shipping-fast"></i></h5>
                             </div>
                         </div>

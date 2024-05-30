@@ -26,6 +26,10 @@
                 <input type="text" class="form-control" id="surname" name="surname" value="{{ $user->surname }}" required maxlength="255">
             </div>
             <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required maxlength="255">
+            </div>
+            <div class="mb-3">
                 <label for="permission" class="form-label">Permission</label>
                 <input type="text" class="form-control" id="permission" name="permission" value="{{ $user->permission }}" required maxlength="255">
             </div>

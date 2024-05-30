@@ -83,7 +83,7 @@ class RestaurantSeeder extends Seeder
 
         Restaurant::create([
             'restaurant_category_id' => 6,
-            'name' => 'Taco Helligtrain',
+            'name' => 'Taco Hellig',
             'logo_path' => 'logo6',
             'ratings' => 4.6,
             'email' => 'tacotruck@example.com',
@@ -137,7 +137,7 @@ class RestaurantSeeder extends Seeder
 
         Restaurant::create([
             'restaurant_category_id' => 4,
-            'name' => 'Lurkin\' Donuts',
+            'name' => 'Lurkin\'',
             'logo_path' => 'logo10',
             'ratings' => 4.0,
             'email' => 'dunkindonuts@example.com',
@@ -151,7 +151,7 @@ class RestaurantSeeder extends Seeder
 
         Restaurant::create([
             'restaurant_category_id' => 5,
-            'name' => 'The Bar & Grill & Chill & EnjoyingParty',
+            'name' => 'Bar Dibi Dibi',
             'logo_path' => 'logo11',
             'ratings' => 4.2,
             'email' => 'barandgrill@example.com',
@@ -164,7 +164,7 @@ class RestaurantSeeder extends Seeder
 
         Restaurant::create([
             'restaurant_category_id' => 6,
-            'name' => 'Burger Crack (for weirdos)',
+            'name' => 'Burger Crack',
             'logo_path' => 'logo12',
             'ratings' => 4.5,
             'email' => 'burgertruck@example.com',
@@ -191,7 +191,7 @@ class RestaurantSeeder extends Seeder
 
         Restaurant::create([
             'restaurant_category_id' => 2,
-            'name' => 'Eleven Per Heaven with my bros',
+            'name' => 'EleHeaven',
             'logo_path' => 'logo14',
             'ratings' => 4.9,
             'email' => 'elevenmadisonpark@example.com',
@@ -204,7 +204,7 @@ class RestaurantSeeder extends Seeder
 
         Restaurant::create([
             'restaurant_category_id' => 3,
-            'name' => 'BumpleWhipster',
+            'name' => 'BumpleWhip',
             'logo_path' => 'logo15',
             'ratings' => 3.8,
             'email' => 'applebees@example.com',

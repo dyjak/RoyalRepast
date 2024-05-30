@@ -38,7 +38,7 @@ class AdminUsersController extends Controller
 
     public function userCreate()
     {
-        return view('admin.users.user-create');
+        return view('auth.register');
     }
 
     public function update(Request $request, $id)
@@ -46,12 +46,12 @@ class AdminUsersController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             'city' => 'required|string|max:255',
             'postal_code' => ['required', 'string', 'max:255', 'regex:/^\d{2}-\d{3}$/'],
             'street' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone' => ['required', 'string', 'max:255', 'regex:/^\+\d{2} \d{9}$/'],
-            'password' => 'required|string|max:255',
         ]);
 
         $user = User::findOrFail($id);
@@ -74,14 +74,14 @@ class AdminUsersController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|max:255',
             'permission' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'postal_code' => ['required', 'string', 'max:255', 'regex:/^\d{2}-\d{3}$/'],
             'street' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone' => ['required', 'string', 'max:255', 'regex:/^\+\d{2} \d{9}$/'],
-            'password' => 'required|string|max:255',
         ]);
 
         User::create([

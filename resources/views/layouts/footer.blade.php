@@ -2,7 +2,8 @@
     <div class="container text-center">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4 mb-3 mb-md-0 text-center">
-                <img src="{{ asset('favicon.png') }}" alt="App Logo" class="mx-auto d-block" style="width: 150px; height: auto;">
+                <img src="{{ asset('favicon.png') }}" alt="App Logo" class="mx-auto d-block"
+                     style="width: 150px; height: auto;">
                 <p class="mt-3">© 2024 Michał Dyjak. All rights reserved.</p>
             </div>
             <div class="col-md-4 mb-3 mb-md-0 text-center">
@@ -26,6 +27,9 @@
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0 text-center">
+            <a href="{{ route('restaurant-category-chart') }}" style="letter-spacing: 10px;">Categories</a>
         </div>
     </div>
 </footer>

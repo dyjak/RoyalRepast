@@ -17,7 +17,4 @@
             <i class="fas fa-star-half-alt"></i>
         @endif
     </div>
-    <div>
-        <h6 class="card-text">{{ $restaurant->city }} {{ $restaurant->street }} {{ $restaurant->address }}</h6>
-    </div>
 </div>

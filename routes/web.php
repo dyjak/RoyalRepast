@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RestaurantCategoryController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\Ordering\CartController;
 use App\Http\Middleware\AdminMiddleware;
@@ -29,6 +30,7 @@ Route::get('/meals/{meal}', [MealController::class, 'show'])->name('meal.details
 Route::get('/restaurant/{restaurant_id}', [RestaurantController::class, 'show'])->name('restaurant.show');
 Route::post('/restaurant/{restaurant_id}', [RestaurantController::class, 'filterByCategory'])->name('restaurant.filterByCategory');
 Route::fallback([RestaurantController::class, 'index'])->name('restaurant.index');
+Route::get('/restaurant_category/chart', [RestaurantCategoryController::class, 'chart'])->name('restaurant-category-chart');
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
@@ -51,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::post('/checkout', [CartController::class, 'placeOrder'])->name('cart.placeOrder');
-//    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('order.details');
 
 
@@ -99,13 +101,13 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/courier-delete-{id}', [AdminCouriersController::class, 'courierDelete'])->name('admin.courier.delete');
     Route::delete('/courier-delete-{id}', [AdminCouriersController::class, 'destroy'])->name('admin.courier.delete');
     //orders
-    Route::get('/orders', [AdminOrdersController::class, 'index'])->name('admin.orders');
-    Route::get('/order/create', [AdminOrdersController::class, 'create'])->name('admin.order.create');
-    Route::post('/order/store', [AdminOrdersController::class, 'store'])->name('admin.order.store');
-    Route::get('/order/edit/{id}', [AdminOrdersController::class, 'edit'])->name('admin.order.edit');
-    Route::put('/order/update/{id}', [AdminOrdersController::class, 'update'])->name('admin.order.update');
-    Route::get('/order/delete/{id}', [AdminOrdersController::class, 'delete'])->name('admin.order.delete');
-    Route::delete('/order/delete/{id}', [AdminOrdersController::class, 'destroy'])->name('admin.order.delete');
+    Route::get('/admin/orders', [AdminOrdersController::class, 'index'])->name('admin.orders');
+    Route::get('/admin/order/create', [AdminOrdersController::class, 'create'])->name('admin.order.create');
+    Route::post('/admin/order/store', [AdminOrdersController::class, 'store'])->name('admin.order.store');
+    Route::get('/admin/order/edit/{id}', [AdminOrdersController::class, 'edit'])->name('admin.order.edit');
+    Route::put('/admin/order/update/{id}', [AdminOrdersController::class, 'update'])->name('admin.order.update');
+    Route::get('/admin/order/delete/{id}', [AdminOrdersController::class, 'delete'])->name('admin.order.delete');
+    Route::delete('/admin/order/delete/{id}', [AdminOrdersController::class, 'destroy'])->name('admin.order.delete');
     //orderelems
     Route::get('/order_elements', [AdminOrderElementsController::class, 'index'])->name('admin.order_elements');
     Route::get('/order_element/create', [AdminOrderElementsController::class, 'create'])->name('admin.order_element.create');

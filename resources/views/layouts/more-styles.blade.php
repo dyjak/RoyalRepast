@@ -164,6 +164,17 @@ width: 100%;
 }
 }
 
+/*img {*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    max-width: 100%;*/
+/*    object-fit: cover;*/
+/*}*/
+tr,th,td{
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.26);
+}
+
 footer {
 background-color: var(--4-color);
 flex-shrink: 0;
